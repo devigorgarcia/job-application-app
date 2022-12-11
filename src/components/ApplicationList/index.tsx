@@ -13,7 +13,7 @@ export const ApplicationList = () => {
         Lista de candidaturas
       </Heading>
       <Flex
-        flexDir={["column", "row"]}
+        flexDir={["column", "column", "row"]}
         gap={["4"]}
         p={["4"]}
         justifyContent={["center"]}

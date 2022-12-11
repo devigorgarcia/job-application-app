@@ -66,4 +66,6 @@ export interface IContextApplicationData {
   listApplications: IApplicationData[];
   getAllApplication: () => void;
   statusList: IStatusList[];
+  searchBar: (searchItem: string) => void;
+  searchStatus: (statusInput: string) => void;
 }

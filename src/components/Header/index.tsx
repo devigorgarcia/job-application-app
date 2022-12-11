@@ -10,7 +10,7 @@ export const Header = () => {
   );
 
   return (
-    <Flex bg="blue.700" color="white" p={["4"]} flexDir={["column"]}>
+    <Flex bg="blue.700" color="white" p={["4"]} flexDir={["column"]} w="100vw">
       <Heading size={["2xl"]}>Bem vindo Fulano</Heading>
       <Flex mt={"2rem"} gap={["2rem"]} textAlign={["center"]}>
         <Flex
