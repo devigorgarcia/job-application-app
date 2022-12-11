@@ -1,7 +1,13 @@
+import { ApplicationList } from "../../components/ApplicationList";
+import { Filter } from "../../components/Filter";
+import { Header } from "../../components/Header";
+
 export const DashboardPage = () => {
   return (
     <>
-      <h1>Dashboard</h1>
+      <Header />
+      <Filter />
+      <ApplicationList />
     </>
   );
 };
