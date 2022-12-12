@@ -16,7 +16,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
     [] as IApplicationData[]
   );
   const [statusList, setListStatus] = useState<IStatusList[]>([]);
-  const [filtredList, setFiltredList] = useState([]);
+  const [inputSelect, setInputSelect] = useState("");
 
   const token = localStorage.getItem("@AppJobs:Token");
 
@@ -42,46 +42,14 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
     });
   };
 
-  const searchBar = (searchItem: string) => {
-    if (searchItem.length == 0) {
-      getAllApplication();
-    } else {
-      let newList = listApplications.filter(
-        (application) =>
-          application.title
-            .toLowerCase()
-            .includes(searchItem.toLocaleLowerCase()) ||
-          application.org
-            .toLowerCase()
-            .includes(searchItem.toLocaleLowerCase()) ||
-          application.status?.status
-            .toLowerCase()
-            .includes(searchItem.toLocaleLowerCase())
-      );
-      setListApplications(newList);
-    }
-  };
-
-  const searchStatus = (statusInput: string) => {
-    if (statusInput === "default") {
-      getAllApplication();
-    } else {
-      let newList: any = listApplications.filter((application) => {
-        return application.status?.status
-          .toLowerCase()
-          .includes(statusInput.toLowerCase());
-      });
-    }
-  };
-
   return (
     <ApplicationContext.Provider
       value={{
         listApplications,
         getAllApplication,
         statusList,
-        searchBar,
-        searchStatus,
+        setInputSelect,
+        inputSelect,
       }}
     >
       {children}

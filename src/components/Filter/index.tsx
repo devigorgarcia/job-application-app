@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { ApplicationContext } from "../../contexts/ApplicationContext";
 
 export const Filter = () => {
-  const { searchBar, searchStatus } = useContext(ApplicationContext);
+  const { setInputSelect } = useContext(ApplicationContext);
   return (
     <Flex flexDir={["column"]} mt={["4"]}>
       <Flex flexDir={["column"]}>
@@ -13,7 +13,7 @@ export const Filter = () => {
           mb={"4"}
           placeholder="Pesquise candidatura/empresa/status"
           width={["90%"]}
-          onChange={(e) => searchBar(e.target.value)}
+          onChange={(e) => setInputSelect(e.target.value)}
         />
         <Flex
           flexDir={["column"]}
@@ -23,7 +23,7 @@ export const Filter = () => {
         >
           <label>Selecione o status da candidatura</label>
           <Select
-            onChange={(e) => searchStatus(e.target.value)}
+            onChange={(e) => setInputSelect(e.target.value)}
             textAlign="center"
           >
             <option value="default">Todas as aplicações</option>

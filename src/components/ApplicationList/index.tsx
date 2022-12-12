@@ -4,8 +4,17 @@ import { ApplicationContext } from "../../contexts/ApplicationContext";
 import { ApplicationCard } from "./ApplicationCard";
 
 export const ApplicationList = () => {
-  const { listApplications, getAllApplication } =
-    useContext(ApplicationContext);
+  const { listApplications, inputSelect } = useContext(ApplicationContext);
+
+  const newList = listApplications.filter((application) => {
+    return (
+      application.status?.status
+        .toLowerCase()
+        .includes(inputSelect.toLowerCase()) ||
+      application.title.toLowerCase().includes(inputSelect.toLowerCase()) ||
+      application.org.toLowerCase().includes(inputSelect.toLocaleLowerCase())
+    );
+  });
 
   return (
     <Flex flexDir={["column"]}>
@@ -18,11 +27,23 @@ export const ApplicationList = () => {
         p={["4"]}
         justifyContent={["center"]}
       >
-        {listApplications.map((application) => {
-          return (
-            <ApplicationCard key={application.id} application={application} />
-          );
-        })}
+        {inputSelect === "default"
+          ? listApplications.map((application) => {
+              return (
+                <ApplicationCard
+                  key={application.id}
+                  application={application}
+                />
+              );
+            })
+          : newList.map((application) => {
+              return (
+                <ApplicationCard
+                  key={application.id}
+                  application={application}
+                />
+              );
+            })}
       </Flex>
     </Flex>
   );
