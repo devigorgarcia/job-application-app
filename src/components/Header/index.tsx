@@ -1,6 +1,7 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ApplicationContext } from "../../contexts/ApplicationContext";
+import { DarkModeToggle } from "../DarkModeToggle";
 
 export const Header = () => {
   const { statusList } = useContext(ApplicationContext);
@@ -10,7 +11,15 @@ export const Header = () => {
   );
 
   return (
-    <Flex bg="blue.700" color="white" p={["4"]} flexDir={["column"]} w="100vw">
+    <Flex
+      bg="blue.700"
+      color="white"
+      p={["4"]}
+      flexDir={["column"]}
+      w="100vw"
+      alignItems={["center"]}
+    >
+      <DarkModeToggle />
       <Heading size={["2xl"]}>Bem vindo Fulano</Heading>
       <Flex mt={"2rem"} gap={["2rem"]} textAlign={["center"]}>
         <Flex

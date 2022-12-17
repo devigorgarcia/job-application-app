@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
-export const Form = () => {
+export const LoginForm = () => {
   const { registerUser, loginUser } = useContext(AuthContext);
   const [state, setState] = useState(false);
 

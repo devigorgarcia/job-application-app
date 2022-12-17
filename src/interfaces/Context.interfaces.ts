@@ -68,4 +68,9 @@ export interface IContextApplicationData {
   statusList: IStatusList[];
   setInputSelect: React.Dispatch<React.SetStateAction<string>>;
   inputSelect: string;
+  editStatus: (
+    newStatus: string,
+    statusId: string,
+    onClose: () => void
+  ) => void;
 }

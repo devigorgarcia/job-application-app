@@ -1,5 +1,6 @@
 import { Flex, Heading, Text } from "@chakra-ui/react";
-import { Form } from "../../components/Form";
+import { LoginForm } from "../../components/Form/LoginForm";
+
 
 export const HomePage = () => {
   return (
@@ -20,7 +21,7 @@ export const HomePage = () => {
         </Text>
       </Flex>
       <Flex justifyContent={["center"]} width={["100vw"]} align={["center"]}>
-        <Form />
+        <LoginForm />
       </Flex>
     </Flex>
   );

@@ -5,7 +5,14 @@ import { ApplicationContext } from "../../contexts/ApplicationContext";
 export const Filter = () => {
   const { setInputSelect } = useContext(ApplicationContext);
   return (
-    <Flex flexDir={["column"]} mt={["4"]}>
+    <Flex
+      flexDir={["column"]}
+      mt={["4"]}
+      mb="4"
+      maxW={"700px"}
+      margin={["0 auto"
+    ]}
+    >
       <Flex flexDir={["column"]}>
         <Input
           margin={["0 auto"]}
@@ -38,11 +45,11 @@ export const Filter = () => {
           </Select>
         </Flex>
       </Flex>
-      <Divider />
+      <Divider mt={"4"} />
       <Flex
-        justifyContent={["space-around"]}
+        justifyContent={["center"]}
         alignItems={["center"]}
-        margin="1rem 0"
+        padding="1rem 0"
       >
         <Button colorScheme="blue">Adicionar nova candidatura</Button>
       </Flex>

@@ -1,4 +1,8 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import {
+  ChakraProvider,
+  ColorModeProvider,
+  ThemeProvider,
+} from "@chakra-ui/react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
@@ -8,12 +12,16 @@ import { theme } from "./styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
-    <ChakraProvider resetCSS theme={theme}>
-      <AuthProvider>
-        <ApplicationProvider>
-          <App />
-        </ApplicationProvider>
-      </AuthProvider>
+    <ChakraProvider resetCSS>
+      <ThemeProvider theme={theme}>
+        <ColorModeProvider>
+          <AuthProvider>
+            <ApplicationProvider>
+              <App />
+            </ApplicationProvider>
+          </AuthProvider>
+        </ColorModeProvider>
+      </ThemeProvider>
     </ChakraProvider>
   </BrowserRouter>
 );

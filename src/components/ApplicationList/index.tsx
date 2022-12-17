@@ -17,7 +17,7 @@ export const ApplicationList = () => {
   });
 
   return (
-    <Flex flexDir={["column"]}>
+    <Flex flexDir={["column"]} mt="3" align={["center"]}>
       <Heading mb="4" textAlign={["center"]}>
         Lista de candidaturas
       </Heading>
