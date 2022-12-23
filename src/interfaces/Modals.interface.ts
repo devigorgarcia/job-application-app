@@ -10,3 +10,8 @@ export interface IModalEdit {
   applicationTitle: string;
   applicationOrg: string;
 }
+
+export interface IModalCreate {
+  isOpen: boolean;
+  onClose: () => void;
+}

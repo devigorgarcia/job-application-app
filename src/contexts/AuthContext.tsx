@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
 
@@ -14,6 +14,7 @@ export const AuthContext = createContext<IContextAuthData>(
 
 export const AuthProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
+  
 
   const registerUser = async (data: IUser) => {
     await api

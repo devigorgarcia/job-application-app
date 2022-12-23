@@ -12,6 +12,11 @@ export interface IUser {
   password: string;
 }
 
+export interface IThemeDarkContext {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface IContextAuthData {
   registerUser: (data: IUser) => void;
   loginUser: (data: IUser) => void;
@@ -26,7 +31,6 @@ export interface IApplication {
   link: string;
   obs: string;
   register_date: string;
-  updated_date: string;
   statusId: string;
   levelId: string;
   stackId: string;
@@ -38,10 +42,10 @@ export interface IApplicationData {
   link: string;
   obs: string;
   register_date?: string;
-  updated_date?: string;
   status?: {
     id: string;
     status: string;
+    updated_date?: string;
   };
   level?: {
     id: string;

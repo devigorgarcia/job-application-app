@@ -20,7 +20,8 @@ export const ApplicationCard = ({ application }: IAppCard) => {
   const registerDay = register_date?.split("-")[2];
   const fullDateRegister = `${registerDay}/${registerMonth}/${registerYear}`;
 
-  const update_date = application?.updated_date?.split("T")[0];
+  let update_date = application.status?.updated_date?.split("T")[0];
+
   const updateYear = update_date?.split("-")[0];
   const updateMonth = update_date?.split("-")[1];
   const updateDay = update_date?.split("-")[2];

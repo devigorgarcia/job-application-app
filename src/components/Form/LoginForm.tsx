@@ -46,15 +46,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <Flex
-      flexDir={["column"]}
-      p={6}
-      m="1"
-      w="100%"
-      maxW="600px"
-      rounded="10px"
-      color="blue.900"
-    >
+    <Flex flexDir={["column"]} p={6} m="1" w="100%" maxW="600px" rounded="10px">
       {state ? (
         <Heading textAlign="center">Login</Heading>
       ) : (

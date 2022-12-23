@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://job-app-api.onrender.com",
+  baseURL: "https://job-application-api.onrender.com",
 });
