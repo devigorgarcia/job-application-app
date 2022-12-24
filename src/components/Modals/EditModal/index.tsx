@@ -24,7 +24,6 @@ export const EditModal = ({
   applicationTitle,
   applicationOrg,
 }: IModalEdit) => {
-  
   const { editStatus } = useContext(ApplicationContext);
   const [newStatus, setNewStatus] = useState("");
 
@@ -55,7 +54,9 @@ export const EditModal = ({
               <option value="Recusado">Recusado</option>
             </Select>
             <Button
-              onClick={() => editStatus(newStatus, applicationStatus.id, onClose)}
+              onClick={() =>
+                editStatus(newStatus, applicationStatus.id, onClose)
+              }
               alignSelf="center"
               colorScheme={"blue"}
               mt={"4"}

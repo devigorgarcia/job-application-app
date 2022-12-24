@@ -6,6 +6,7 @@ import {
   IContextApplicationData,
   IProviderProps,
   IStatusList,
+  IUpdateApplicationData,
 } from "../interfaces/Context.interfaces";
 
 export const ApplicationContext = createContext<IContextApplicationData>(
@@ -20,6 +21,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   const [inputSelect, setInputSelect] = useState("");
 
   const token = localStorage.getItem("@AppJobs:Token");
+  api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   useEffect(() => {
     getAllApplication();
@@ -27,7 +29,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const getAllApplication = () => {
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api
       .get("/applications")
       .then((res) => {
@@ -37,7 +39,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   };
 
   const getAllStatus = () => {
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api
       .get("status")
       .then((res) => {
@@ -51,8 +53,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
     statusId: string,
     onClose: () => void
   ) => {
-    console.log(newStatus, statusId);
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const editStatus = {
       status: newStatus,
     };
@@ -63,6 +64,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
         theme: "dark",
       });
       getAllApplication();
+      getAllStatus();
       setTimeout(() => {
         onClose();
       }, 5000);
@@ -70,6 +72,24 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const editApplication = async (
+    data: IUpdateApplicationData,
+    applicationId: string,
+    onClose: () => void
+  ) => {
+    try {
+      const response = await api.patch(`/applications/${applicationId}`, data);
+      toast.success("Status Atualizado", {
+        autoClose: 1000,
+        theme: "dark",
+      });
+      getAllApplication();
+      setTimeout(() => {
+        onClose();
+      }, 2000);
+    } catch (error) {}
   };
 
   return (
@@ -81,6 +101,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
         setInputSelect,
         inputSelect,
         editStatus,
+        editApplication,
       }}
     >
       {children}

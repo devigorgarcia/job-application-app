@@ -62,13 +62,7 @@ export const LoginForm = () => {
         <VStack spacing={10} w="100%">
           <Box w="100%">
             <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              bg="gray.100"
-              h="52px"
-              padding={4}
-              {...register("email")}
-            />
+            <Input type="email" h="52px" padding={4} {...register("email")} />
             {errors.email ? (
               <Text>{errors.email?.message}</Text>
             ) : (
@@ -79,7 +73,6 @@ export const LoginForm = () => {
             <FormLabel>Password</FormLabel>
             <Input
               type="password"
-              bg="gray.100"
               h="52px"
               padding={4}
               {...register("password")}

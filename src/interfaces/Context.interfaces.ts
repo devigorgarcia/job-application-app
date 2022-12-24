@@ -36,7 +36,7 @@ export interface IApplication {
   stackId: string;
 }
 export interface IApplicationData {
-  id?: string;
+  id: string;
   title: string;
   org: string;
   link: string;
@@ -55,6 +55,10 @@ export interface IApplicationData {
     id: string;
     level: string;
   };
+}
+
+export interface IUpdateApplicationData {
+  obs?: string;
 }
 
 export interface IStatusList {
@@ -77,4 +81,9 @@ export interface IContextApplicationData {
     statusId: string,
     onClose: () => void
   ) => void;
+  editApplication: (
+    data: IUpdateApplicationData,
+    applicationId: string,
+    onClose: () => void
+  ) => Promise<void>;
 }

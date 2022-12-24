@@ -1,10 +1,17 @@
 import { Flex, Heading } from "@chakra-ui/react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ApplicationContext } from "../../contexts/ApplicationContext";
 import { ApplicationCard } from "./ApplicationCard";
 
 export const ApplicationList = () => {
-  const { listApplications, inputSelect } = useContext(ApplicationContext);
+  const { listApplications, inputSelect, getAllApplication } =
+    useContext(ApplicationContext);
+
+  useEffect(() => {
+    getAllApplication();
+  }, []);
+
+  console.log(listApplications);
 
   const newList = listApplications.filter((application) => {
     return (

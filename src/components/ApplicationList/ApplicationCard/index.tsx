@@ -10,9 +10,20 @@ import {
 import { IAppCard } from "../../../interfaces/Context.interfaces";
 import { AiOutlineEdit } from "react-icons/ai";
 import { EditModal } from "../../Modals/EditModal";
+import { ObsEditModal } from "../../Modals/ObsEditModal";
 
 export const ApplicationCard = ({ application }: IAppCard) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenEdit,
+    onOpen: onOpenEdit,
+    onClose: onCloseEdit,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenObsEdit,
+    onOpen: onOpenObsEdit,
+    onClose: onCloseObsEdit,
+  } = useDisclosure();
 
   const register_date = application?.register_date?.split("T")[0];
   const registerYear = register_date?.split("-")[0];
@@ -71,8 +82,8 @@ export const ApplicationCard = ({ application }: IAppCard) => {
             <strong>Status:</strong>
           </Text>
           <Text>{application?.status?.status}</Text>
-          <Button>
-            <AiOutlineEdit onClick={onOpen} />
+          <Button colorScheme="blue" onClick={onOpenEdit}>
+            <AiOutlineEdit />
           </Button>
         </Flex>
         <Divider />
@@ -80,21 +91,38 @@ export const ApplicationCard = ({ application }: IAppCard) => {
           <strong>Observações: </strong>
           {application.obs}
         </Text>
-        <Button>Editar</Button>
+        <Button
+          colorScheme="blue"
+          w="50%"
+          margin="0 auto"
+          onClick={onOpenObsEdit}
+        >
+          Editar observações
+        </Button>
         <Divider />
-        <Link textAlign="center" href={application.link}>
-          <strong>Ir para Candidatura</strong>
+        <Link
+          m="1rem auto"
+          target="_blank"
+          textAlign="center"
+          href={application.link}
+        >
+          <strong>Acompanhe sua candidatura</strong>
         </Link>
       </Flex>
       {application.status?.status && (
         <EditModal
-          isOpen={isOpen}
-          onClose={onClose}
+          isOpen={isOpenEdit}
+          onClose={onCloseEdit}
           applicationStatus={application.status}
           applicationTitle={application.title}
           applicationOrg={application.org}
         />
       )}
+      <ObsEditModal
+        applicationId={application.id}
+        isOpen={isOpenObsEdit}
+        onClose={onCloseObsEdit}
+      />
     </>
   );
 };

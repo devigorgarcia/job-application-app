@@ -40,14 +40,7 @@ export const CreateForm = () => {
   };
 
   return (
-    <Flex
-      flexDir={["column"]}
-      p={4}
-      w="100%"
-      maxW="600px"
-      rounded="10px"
-      // color="blue.900"
-    >
+    <Flex flexDir={["column"]} p={4} w="100%" maxW="600px" rounded="10px">
       <Flex
         as="form"
         flexDir={["column"]}
@@ -59,7 +52,6 @@ export const CreateForm = () => {
             <FormLabel>Titulo da vaga</FormLabel>
             <Input
               type="text"
-              bg="gray.100"
               h="52px"
               padding={4}
               {...register("title")}
@@ -70,7 +62,6 @@ export const CreateForm = () => {
             <Text>Empresa</Text>
             <Input
               type="text"
-              bg="gray.100"
               h="52px"
               padding={4}
               placeholder="Digita a Empresa"
@@ -113,7 +104,6 @@ export const CreateForm = () => {
             <FormLabel>Link</FormLabel>
             <Input
               type="text"
-              bg="gray.100"
               h="52px"
               padding={4}
               placeholder="Coloque o link da candidatura"
@@ -124,7 +114,6 @@ export const CreateForm = () => {
             <FormLabel>Observações</FormLabel>
             <Input
               type="text"
-              bg="gray.100"
               h="52px"
               padding={4}
               placeholder="Coloque alguma informações Adicionais"
