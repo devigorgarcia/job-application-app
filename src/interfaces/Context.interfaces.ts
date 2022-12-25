@@ -20,6 +20,7 @@ export interface IThemeDarkContext {
 export interface IContextAuthData {
   registerUser: (data: IUser) => void;
   loginUser: (data: IUser) => void;
+  tokenDecode: any;
 }
 
 //Application Context
@@ -70,6 +71,13 @@ export interface IStatusList {
 export interface IAppCard {
   application: IApplicationData;
 }
+
+
+export interface IUserData {
+  email: string;
+  id: string;
+  applications: IApplication[];
+}
 export interface IContextApplicationData {
   listApplications: IApplicationData[];
   getAllApplication: () => void;
@@ -86,4 +94,6 @@ export interface IContextApplicationData {
     applicationId: string,
     onClose: () => void
   ) => Promise<void>;
+  getUserInfo: (userId: string) => Promise<IUserData>;
+  userInfo: any;
 }

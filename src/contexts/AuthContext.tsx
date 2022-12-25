@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../api";
+import jwt_decode from "jwt-decode";
 
 import {
   IContextAuthData,
@@ -13,8 +14,8 @@ export const AuthContext = createContext<IContextAuthData>(
 );
 
 export const AuthProvider = ({ children }: IProviderProps) => {
+  const [tokenDecode, setTokenDecode] = useState();
   const navigate = useNavigate();
-  
 
   const registerUser = async (data: IUser) => {
     await api
@@ -28,12 +29,13 @@ export const AuthProvider = ({ children }: IProviderProps) => {
   const loginUser = async (data: IUser) => {
     await api.post("/login", data).then((response) => {
       localStorage.setItem("@AppJobs:Token", response.data.token);
-
+      const token = jwt_decode<any>(response.data.token);
+      setTokenDecode(token);
       navigate("/dashboard");
     });
   };
   return (
-    <AuthContext.Provider value={{ registerUser, loginUser }}>
+    <AuthContext.Provider value={{ registerUser, loginUser, tokenDecode }}>
       {children}
     </AuthContext.Provider>
   );
