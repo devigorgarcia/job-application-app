@@ -72,7 +72,6 @@ export interface IAppCard {
   application: IApplicationData;
 }
 
-
 export interface IUserData {
   email: string;
   id: string;
@@ -96,4 +95,6 @@ export interface IContextApplicationData {
   ) => Promise<void>;
   getUserInfo: (userId: string) => Promise<IUserData>;
   userInfo: any;
+  getUserStatus: (statusId: string) => Promise<void>;
+  userStatus: any;
 }

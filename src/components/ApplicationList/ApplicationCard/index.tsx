@@ -19,6 +19,8 @@ export const ApplicationCard = ({ application }: IAppCard) => {
     onClose: onCloseEdit,
   } = useDisclosure();
 
+  
+
   const {
     isOpen: isOpenObsEdit,
     onOpen: onOpenObsEdit,

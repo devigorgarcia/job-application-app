@@ -22,7 +22,7 @@ export const ApplicationList = () => {
       } catch (error) {}
     };
     getUser();
-  }, [applications]);
+  }, []);
 
   const newList = applications.filter((application) => {
     return application.title.toLowerCase().includes(inputSelect.toLowerCase());

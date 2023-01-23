@@ -20,6 +20,7 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   const [statusList, setListStatus] = useState<IStatusList[]>([]);
   const [inputSelect, setInputSelect] = useState("");
   const [userInfo, setUserInfo] = useState();
+  const [userStatus, setUserStatus] = useState<any>({});
   const [userApplications, setUserApplications] = useState();
 
   const token = localStorage.getItem("@AppJobs:Token");
@@ -46,6 +47,15 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
         setListStatus(res.data);
       })
       .catch((err) => console.log(err));
+  };
+
+  const getUserStatus = async (statusId: string) => {
+    try {
+      const response = await api.get(`/status/${statusId}`);
+      setUserStatus(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const editStatus = async (
@@ -113,6 +123,8 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
         editApplication,
         getUserInfo,
         userInfo,
+        getUserStatus,
+        userStatus,
       }}
     >
       {children}
