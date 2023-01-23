@@ -19,6 +19,9 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   );
   const [statusList, setListStatus] = useState<IStatusList[]>([]);
   const [inputSelect, setInputSelect] = useState("");
+  const [userInfo, setUserInfo] = useState();
+  const [userStatus, setUserStatus] = useState<any>({});
+  const [userApplications, setUserApplications] = useState();
 
   const token = localStorage.getItem("@AppJobs:Token");
   api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -29,7 +32,6 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   }, []);
 
   const getAllApplication = () => {
-    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api
       .get("/applications")
       .then((res) => {
@@ -39,7 +41,6 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
   };
 
   const getAllStatus = () => {
-    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     api
       .get("status")
       .then((res) => {
@@ -48,12 +49,20 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
       .catch((err) => console.log(err));
   };
 
+  const getUserStatus = async (statusId: string) => {
+    try {
+      const response = await api.get(`/status/${statusId}`);
+      setUserStatus(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const editStatus = async (
     newStatus: string,
     statusId: string,
     onClose: () => void
   ) => {
-    // api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const editStatus = {
       status: newStatus,
     };
@@ -92,6 +101,16 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
     } catch (error) {}
   };
 
+  // REQUISIÇÂO USER
+  const getUserInfo = async (userId: string) => {
+    try {
+      const response = await api.get(`/users/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ApplicationContext.Provider
       value={{
@@ -102,6 +121,10 @@ export const ApplicationProvider = ({ children }: IProviderProps) => {
         inputSelect,
         editStatus,
         editApplication,
+        getUserInfo,
+        userInfo,
+        getUserStatus,
+        userStatus,
       }}
     >
       {children}
